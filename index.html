@@ -418,7 +418,7 @@
             overflow-y: auto;
         }
         
-        /* Table Styles */
+        /* Table Styles - PERBAIKAN */
         .league-table {
             width: 100%;
             border-collapse: collapse;
@@ -426,13 +426,14 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
+            table-layout: fixed; /* Menambahkan ini untuk konsistensi lebar kolom */
         }
         
         .league-table th {
             background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
             color: var(--accent);
             text-align: center;
-            padding: 16px 20px;
+            padding: 16px 10px; /* Mengurangi padding untuk ruang lebih baik */
             font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
@@ -442,11 +443,28 @@
         
         .league-table td {
             text-align: center;
-            padding: 14px 20px;
+            padding: 14px 10px; /* Mengurangi padding untuk ruang lebih baik */
             font-size: 14px;
             color: var(--accent);
             border: 1px solid var(--accent);
             transition: all 0.3s ease;
+            word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
+        }
+        
+        /* Menentukan lebar kolom yang konsisten */
+        .league-table th:nth-child(1),
+        .league-table td:nth-child(1) {
+            width: 25%; /* Kolom tanggal & waktu */
+        }
+        
+        .league-table th:nth-child(2),
+        .league-table td:nth-child(2) {
+            width: 55%; /* Kolom pertandingan */
+        }
+        
+        .league-table th:nth-child(3),
+        .league-table td:nth-child(3) {
+            width: 20%; /* Kolom skor */
         }
         
         .league-name {
@@ -631,6 +649,22 @@
             .sbo-content {
                 grid-template-columns: 1fr;
             }
+            
+            /* Responsive table adjustments */
+            .league-table th:nth-child(1),
+            .league-table td:nth-child(1) {
+                width: 30%;
+            }
+            
+            .league-table th:nth-child(2),
+            .league-table td:nth-child(2) {
+                width: 50%;
+            }
+            
+            .league-table th:nth-child(3),
+            .league-table td:nth-child(3) {
+                width: 20%;
+            }
         }
         
         @media (max-width: 768px) {
@@ -657,6 +691,31 @@
             .sbo-content {
                 grid-template-columns: 1fr;
             }
+            
+            /* Responsive table adjustments */
+            .league-table {
+                font-size: 12px;
+            }
+            
+            .league-table th,
+            .league-table td {
+                padding: 10px 5px;
+            }
+            
+            .league-table th:nth-child(1),
+            .league-table td:nth-child(1) {
+                width: 35%;
+            }
+            
+            .league-table th:nth-child(2),
+            .league-table td:nth-child(2) {
+                width: 45%;
+            }
+            
+            .league-table th:nth-child(3),
+            .league-table td:nth-child(3) {
+                width: 20%;
+            }
         }
         
         @media (max-width: 480px) {
@@ -682,6 +741,31 @@
             
             .sbo-title {
                 font-size: 20px;
+            }
+            
+            /* Responsive table adjustments untuk mobile kecil */
+            .league-table {
+                font-size: 10px;
+            }
+            
+            .league-table th,
+            .league-table td {
+                padding: 8px 3px;
+            }
+            
+            .league-table th:nth-child(1),
+            .league-table td:nth-child(1) {
+                width: 40%;
+            }
+            
+            .league-table th:nth-child(2),
+            .league-table td:nth-child(2) {
+                width: 40%;
+            }
+            
+            .league-table th:nth-child(3),
+            .league-table td:nth-child(3) {
+                width: 20%;
             }
         }
     </style>
@@ -1179,7 +1263,7 @@ PARAGUAY INTERMEDIA DIVISION
             100% { transform: translateX(-100%); }
         }
         
-        /* Styling untuk tabel */
+        /* Styling untuk tabel - PERBAIKAN */
         .league-table {
             width: 100%;
             margin: 20px auto;
@@ -1189,13 +1273,14 @@ PARAGUAY INTERMEDIA DIVISION
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
             overflow: hidden;
             border: 1px solid #FFD700;
+            table-layout: fixed; /* Menambahkan ini untuk konsistensi lebar kolom */
         }
         
         .league-table th {
             background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
             color: #FFD700;
             text-align: center;
-            padding: 16px 20px;
+            padding: 16px 10px; /* Mengurangi padding untuk ruang lebih baik */
             font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
@@ -1224,11 +1309,28 @@ PARAGUAY INTERMEDIA DIVISION
         
         .league-table td {
             text-align: center;
-            padding: 14px 20px;
+            padding: 14px 10px; /* Mengurangi padding untuk ruang lebih baik */
             font-size: 14px;
             color: #FFD700;
             border: 1px solid #FFD700;
             transition: all 0.3s ease;
+            word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
+        }
+        
+        /* Menentukan lebar kolom yang konsisten */
+        .league-table th:nth-child(1),
+        .league-table td:nth-child(1) {
+            width: 25%; /* Kolom tanggal & waktu */
+        }
+        
+        .league-table th:nth-child(2),
+        .league-table td:nth-child(2) {
+            width: 55%; /* Kolom pertandingan */
+        }
+        
+        .league-table th:nth-child(3),
+        .league-table td:nth-child(3) {
+            width: 20%; /* Kolom skor */
         }
         
         .league-name {
@@ -1262,21 +1364,6 @@ PARAGUAY INTERMEDIA DIVISION
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         
-        /* Kolom khusus */
-        .date-column {
-            width: 20%;
-        }
-        
-        .match-column {
-            width: 50%;
-            text-align: left;
-        }
-        
-        .score-column {
-            width: 30%;
-            font-weight: bold;
-        }
-        
         /* Responsivitas mobile */
         @media (max-width: 768px) {
             .header {
@@ -1297,7 +1384,7 @@ PARAGUAY INTERMEDIA DIVISION
             
             .league-table th, 
             .league-table td {
-                padding: 10px 12px;
+                padding: 10px 5px;
                 font-size: 12px;
             }
             
@@ -1307,6 +1394,22 @@ PARAGUAY INTERMEDIA DIVISION
             
             .marquee p {
                 font-size: 14px;
+            }
+            
+            /* Responsive table adjustments */
+            .league-table th:nth-child(1),
+            .league-table td:nth-child(1) {
+                width: 30%;
+            }
+            
+            .league-table th:nth-child(2),
+            .league-table td:nth-child(2) {
+                width: 50%;
+            }
+            
+            .league-table th:nth-child(3),
+            .league-table td:nth-child(3) {
+                width: 20%;
             }
         }
         
@@ -1321,7 +1424,7 @@ PARAGUAY INTERMEDIA DIVISION
             
             .league-table th, 
             .league-table td {
-                padding: 8px 10px;
+                padding: 8px 3px;
                 font-size: 11px;
             }
             
@@ -1331,6 +1434,22 @@ PARAGUAY INTERMEDIA DIVISION
             
             .marquee p {
                 font-size: 12px;
+            }
+            
+            /* Responsive table adjustments untuk mobile kecil */
+            .league-table th:nth-child(1),
+            .league-table td:nth-child(1) {
+                width: 35%;
+            }
+            
+            .league-table th:nth-child(2),
+            .league-table td:nth-child(2) {
+                width: 45%;
+            }
+            
+            .league-table th:nth-child(3),
+            .league-table td:nth-child(3) {
+                width: 20%;
             }
         }
         
