@@ -209,17 +209,19 @@
             color: var(--accent);
         }
         
-        /* SBO Virtual Live Stream Styles */
-        .sbo-virtual-container {
+        /* Banner Slider Styles */
+        .banner-slider-container {
             margin-top: 30px;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             padding: 20px;
             border: 1px solid var(--accent);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
-        .sbo-header {
+        .banner-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -228,104 +230,95 @@
             border-bottom: 2px solid var(--accent);
         }
         
-        .sbo-title {
+        .banner-title {
             font-size: 24px;
             color: var(--accent);
             font-weight: 700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
         
-        .sbo-refresh-btn {
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
-            color: var(--light);
-            border: 1px solid var(--accent);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .sbo-refresh-btn:hover {
-            background: linear-gradient(135deg, #333333 0%, #000000 100%);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-        }
-        
-        .sbo-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .sbo-stream {
+        .banner-slider {
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background-color: #000;
-            border-radius: 10px;
+            height: 400px;
             overflow: hidden;
-            border: 1px solid var(--accent);
+            border-radius: 10px;
         }
         
-        .sbo-stream iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .banner-slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        
+        .banner-slide {
+            width: 20%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .banner-slide img {
             width: 100%;
             height: 100%;
-            border: none;
-        }
-        
-        .sbo-info {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
+            object-fit: cover;
             border-radius: 10px;
-            border: 1px solid var(--accent);
         }
         
-        .sbo-info-title {
-            font-size: 18px;
-            color: var(--accent);
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .sbo-match-list {
-            list-style: none;
-        }
-        
-        .sbo-match-item {
+        .banner-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
             display: flex;
             justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .banner-nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: rgba(51, 51, 51, 0.5);
-            border-radius: 5px;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        .banner-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .sbo-match-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateX(5px);
-        }
-        
-        .sbo-teams {
-            flex: 1;
-            font-size: 14px;
-        }
-        
-        .sbo-score {
-            font-weight: 700;
-            color: var(--accent);
-            margin: 0 10px;
-        }
-        
-        .sbo-time {
-            color: var(--secondary);
-            font-size: 12px;
+        .banner-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
         
         /* Form Styles */
@@ -418,7 +411,7 @@
             overflow-y: auto;
         }
         
-        /* Table Styles - PERBAIKAN */
+        /* Table Styles */
         .league-table {
             width: 100%;
             border-collapse: collapse;
@@ -426,14 +419,14 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
-            table-layout: fixed; /* Menambahkan ini untuk konsistensi lebar kolom */
+            table-layout: fixed;
         }
         
         .league-table th {
             background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
             color: var(--accent);
             text-align: center;
-            padding: 16px 10px; /* Mengurangi padding untuk ruang lebih baik */
+            padding: 16px 10px;
             font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
@@ -443,28 +436,27 @@
         
         .league-table td {
             text-align: center;
-            padding: 14px 10px; /* Mengurangi padding untuk ruang lebih baik */
+            padding: 14px 10px;
             font-size: 14px;
             color: var(--accent);
             border: 1px solid var(--accent);
             transition: all 0.3s ease;
-            word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
+            word-wrap: break-word;
         }
         
-        /* Menentukan lebar kolom yang konsisten */
         .league-table th:nth-child(1),
         .league-table td:nth-child(1) {
-            width: 25%; /* Kolom tanggal & waktu */
+            width: 25%;
         }
         
         .league-table th:nth-child(2),
         .league-table td:nth-child(2) {
-            width: 55%; /* Kolom pertandingan */
+            width: 55%;
         }
         
         .league-table th:nth-child(3),
         .league-table td:nth-child(3) {
-            width: 20%; /* Kolom skor */
+            width: 20%;
         }
         
         .league-name {
@@ -478,7 +470,6 @@
             letter-spacing: 1px;
         }
         
-        /* Warna baris */
         .league-table tr:nth-child(even) {
             background-color: rgba(0, 0, 0, 0.6);
         }
@@ -487,7 +478,6 @@
             background-color: rgba(51, 51, 51, 0.6);
         }
         
-        /* Efek hover */
         .league-table tr:hover {
             background-color: rgba(255, 215, 0, 0.2);
         }
@@ -610,11 +600,11 @@
         
         .meteor {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 2px;
+            height: 2px;
             background: var(--light);
             border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8);
             opacity: 0;
             z-index: 10;
         }
@@ -646,11 +636,10 @@
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
             
-            .sbo-content {
-                grid-template-columns: 1fr;
+            .banner-slider {
+                height: 300px;
             }
             
-            /* Responsive table adjustments */
             .league-table th:nth-child(1),
             .league-table td:nth-child(1) {
                 width: 30%;
@@ -688,11 +677,16 @@
                 justify-content: center;
             }
             
-            .sbo-content {
-                grid-template-columns: 1fr;
+            .banner-slider {
+                height: 250px;
             }
             
-            /* Responsive table adjustments */
+            .banner-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
             .league-table {
                 font-size: 12px;
             }
@@ -739,11 +733,19 @@
                 font-size: 30px;
             }
             
-            .sbo-title {
+            .banner-title {
                 font-size: 20px;
             }
             
-            /* Responsive table adjustments untuk mobile kecil */
+            .banner-slider {
+                height: 200px;
+            }
+            
+            .banner-nav-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
             .league-table {
                 font-size: 10px;
             }
@@ -826,49 +828,45 @@
                 </div>
             </div>
             
-            <!-- Bagian SBO Virtual Live Stream -->
-            <div class="sbo-virtual-container">
-                <div class="sbo-header">
-                    <h3 class="sbo-title">SBO Virtual Live Stream</h3>
-                    <button class="sbo-refresh-btn" onclick="refreshSBOStream()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
+            <!-- Bagian Banner Slider -->
+            <div class="banner-slider-container">
+                <div class="banner-header">
+                    <h3 class="banner-title">Promo Spesial NAKBON99</h3>
+                    <div class="banner-dots" id="bannerDots">
+                        <span class="banner-dot active" data-index="0"></span>
+                        <span class="banner-dot" data-index="1"></span>
+                        <span class="banner-dot" data-index="2"></span>
+                        <span class="banner-dot" data-index="3"></span>
+                        <span class="banner-dot" data-index="4"></span>
+                    </div>
                 </div>
                 
-                <div class="sbo-content">
-                    <div class="sbo-stream">
-                        <iframe id="sboLiveStream" src="https://virtualsports.wwyyuuvv22.com/virtualsports" frameborder="0" allowfullscreen></iframe>
+                <div class="banner-slider">
+                    <div class="banner-slides" id="bannerSlides">
+                        <div class="banner-slide">
+                            <img src="https://i.postimg.cc/x8fwqfvK/a1.jpg" alt="Promo 1">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://i.postimg.cc/CxBWR68V/a2.jpg" alt="Promo 2">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://i.postimg.cc/vBMjSYNd/a3.jpg" alt="Promo 3">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://i.postimg.cc/wxwP0d5r/a4.jpg" alt="Promo 4">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://i.postimg.cc/pmPZkTXD/a5.jpg" alt="Promo 5">
+                        </div>
                     </div>
                     
-                    <div class="sbo-info">
-                        <h4 class="sbo-info-title">Jadwal Pertandingan Virtual</h4>
-                        <ul class="sbo-match-list" id="sboMatchList">
-                            <li class="sbo-match-item">
-                                <div class="sbo-teams">Manchester United vs Barcelona</div>
-                                <div class="sbo-score">2 - 1</div>
-                                <div class="sbo-time">35'</div>
-                            </li>
-                            <li class="sbo-match-item">
-                                <div class="sbo-teams">Real Madrid vs Liverpool</div>
-                                <div class="sbo-score">0 - 0</div>
-                                <div class="sbo-time">15'</div>
-                            </li>
-                            <li class="sbo-match-item">
-                                <div class="sbo-teams">Bayern Munich vs PSG</div>
-                                <div class="sbo-score">1 - 2</div>
-                                <div class="sbo-time">60'</div>
-                            </li>
-                            <li class="sbo-match-item">
-                                <div class="sbo-teams">Juventus vs AC Milan</div>
-                                <div class="sbo-score">-</div>
-                                <div class="sbo-time">20:00</div>
-                            </li>
-                            <li class="sbo-match-item">
-                                <div class="sbo-teams">Chelsea vs Arsenal</div>
-                                <div class="sbo-score">-</div>
-                                <div class="sbo-time">21:30</div>
-                            </li>
-                        </ul>
+                    <div class="banner-nav">
+                        <button class="banner-nav-btn" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="banner-nav-btn" id="nextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -974,7 +972,7 @@ PARAGUAY INTERMEDIA DIVISION
         
         // Fungsi untuk efek meteor
         function createMeteor() {
-            const container = document.querySelector('.marquee-container');
+            const container = document.querySelector('.banner-slider-container');
             if (!container) return;
             
             const meteor = document.createElement('div');
@@ -1001,54 +999,64 @@ PARAGUAY INTERMEDIA DIVISION
         // Jalankan efek meteor setiap 500ms
         setInterval(createMeteor, 500);
         
-        // Fungsi untuk refresh SBO Virtual Stream
-        function refreshSBOStream() {
-            const iframe = document.getElementById('sboLiveStream');
-            iframe.src = iframe.src;
+        // Banner Slider Logic
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const slideInterval = 12000; // 12 detik
+        
+        const bannerSlides = document.getElementById('bannerSlides');
+        const dots = document.querySelectorAll('.banner-dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Fungsi untuk mengubah slide
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            bannerSlides.style.transform = `translateX(-${currentSlide * 20}%)`;
             
-            // Simulasi update jadwal pertandingan
-            const matchList = document.getElementById('sboMatchList');
-            const matches = matchList.querySelectorAll('.sbo-match-item');
-            
-            matches.forEach(match => {
-                const scoreElement = match.querySelector('.sbo-score');
-                const timeElement = match.querySelector('.sbo-time');
-                
-                if (scoreElement.textContent === '-') {
-                    // Jika pertandingan belum dimulai, tidak ada perubahan
-                    return;
-                }
-                
-                // Update skor secara acak
-                const currentScore = scoreElement.textContent.split(' - ');
-                let homeScore = parseInt(currentScore[0]);
-                let awayScore = parseInt(currentScore[1]);
-                
-                // 20% kemungkinan terjadi gol
-                if (Math.random() < 0.2) {
-                    if (Math.random() < 0.5) {
-                        homeScore += 1;
-                    } else {
-                        awayScore += 1;
-                    }
-                    scoreElement.textContent = `${homeScore} - ${awayScore}`;
-                }
-                
-                // Update waktu pertandingan
-                if (timeElement.textContent.includes("'")) {
-                    let minute = parseInt(timeElement.textContent);
-                    if (minute < 90) {
-                        minute += 5;
-                        timeElement.textContent = `${minute}'`;
-                    } else {
-                        timeElement.textContent = 'FT';
-                    }
-                }
-            });
-            
-            // Tampilkan notifikasi
-            alert('SBO Virtual Live Stream telah diperbarui!');
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
         }
+        
+        // Fungsi untuk slide berikutnya
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+        
+        // Fungsi untuk slide sebelumnya
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            goToSlide(currentSlide);
+        }
+        
+        // Event listeners untuk tombol navigasi
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Event listeners untuk dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-index'));
+                goToSlide(slideIndex);
+            });
+        });
+        
+        // Auto slide
+        let slideTimer = setInterval(nextSlide, slideInterval);
+        
+        // Reset timer saat interaksi manual
+        function resetTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, slideInterval);
+        }
+        
+        prevBtn.addEventListener('click', resetTimer);
+        nextBtn.addEventListener('click', resetTimer);
+        dots.forEach(dot => {
+            dot.addEventListener('click', resetTimer);
+        });
         
         // Fungsi generate tabel prediksi
         function generateTable() {
@@ -1263,7 +1271,7 @@ PARAGUAY INTERMEDIA DIVISION
             100% { transform: translateX(-100%); }
         }
         
-        /* Styling untuk tabel - PERBAIKAN */
+        /* Styling untuk tabel */
         .league-table {
             width: 100%;
             margin: 20px auto;
@@ -1273,14 +1281,14 @@ PARAGUAY INTERMEDIA DIVISION
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
             overflow: hidden;
             border: 1px solid #FFD700;
-            table-layout: fixed; /* Menambahkan ini untuk konsistensi lebar kolom */
+            table-layout: fixed;
         }
         
         .league-table th {
             background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
             color: #FFD700;
             text-align: center;
-            padding: 16px 10px; /* Mengurangi padding untuk ruang lebih baik */
+            padding: 16px 10px;
             font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
@@ -1309,12 +1317,12 @@ PARAGUAY INTERMEDIA DIVISION
         
         .league-table td {
             text-align: center;
-            padding: 14px 10px; /* Mengurangi padding untuk ruang lebih baik */
+            padding: 14px 10px;
             font-size: 14px;
             color: #FFD700;
             border: 1px solid #FFD700;
             transition: all 0.3s ease;
-            word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
+            word-wrap: break-word;
         }
         
         /* Menentukan lebar kolom yang konsisten */
